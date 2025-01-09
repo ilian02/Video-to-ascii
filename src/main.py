@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import sys
 import time
+import argparse
 
 gscale_long = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
 gscale_short = '@%#*+=-:. '
@@ -53,7 +54,12 @@ def videoToAscii(filename, gscale):
 
 
 def main():
-    print("The begginning.")
-    videoToAscii("videos/hand.mp4", gscale_long)
+
+    parser = argparse.ArgumentParser(description="Convert video to ASCII art.")
+    parser.add_argument("input_file", help="Path to the video file or '0' for webcam")
+    args = parser.parse_args()
+    file_name = args.input_file
+
+    videoToAscii(file_name, gscale_long)
 
 main()
